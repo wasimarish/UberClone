@@ -35,7 +35,7 @@ const Home = () => {
   },[panelopen]);
 
   return (
-    <div className='h-screen relative' >
+    <div className='h-screen relative ' >
       <img className='w-16 absolute left-5 top-5' src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="Uber logo" />
 
       <div className='h-screen w-screen '>
@@ -65,10 +65,14 @@ const Home = () => {
           </form>
         </div>
 
-        <div ref={panelRef} className='h-[70%] bg-white-500 '>
+        <div ref={panelRef} className='h-[70%] bg-white'>
           {/* Content for the panel can go here */}
           <LocationSearchPanel/>
         </div>
+      </div>
+
+      <div className='z-10'>
+
       </div>
     </div>
   )
