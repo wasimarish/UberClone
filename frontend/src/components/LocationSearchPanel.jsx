@@ -2,7 +2,7 @@ import React from 'react'
 
 export const LocationSearchPanel = (props) => {
 
-  console.log(props)
+  // console.log(props)
   const location=[
     "123345 Maple Street, Imaginary City, State 98765, Planet Earth.",
     "123547 Maple Street, Imaginary City, State 98765, Planet Earth.",

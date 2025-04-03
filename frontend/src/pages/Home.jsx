@@ -3,6 +3,9 @@ import {useGSAP} from '@gsap/react'
 import gsap from 'gsap';
 import 'remixicon/fonts/remixicon.css'
 import { LocationSearchPanel } from '../components/LocationSearchPanel';
+import VehiclePanel from '../components/VehiclePanel';
+import ConfirmRide from '../components/ConfirmRide';
+import LookingForDriver from '../components/LookingForDriver';
 
 const Home = () => {
   const [pickup,setPickup]=useState('');
@@ -12,6 +15,10 @@ const Home = () => {
   const panelCloseRef=useRef(null);
   const [vehiclePanelOpen,setVehiclePanelOpen]=useState(false);
   const vehiclePanelRef = useRef(null)
+  const confirmRidePanelRef=useRef(null)
+  const vehicleFoundRef=useRef(null)
+  const [confirmRidePanel, setConfirmRidePanel] = useState(false)
+  const [vehicleFound, setvehicleFound] = useState(false)
 
   const submitHandler=(e)=>{
     e.preventDefault();
@@ -49,6 +56,37 @@ const Home = () => {
     }
    
   },[vehiclePanelOpen])
+
+  
+  useGSAP(function(){
+
+    if(confirmRidePanel){
+      gsap.to(confirmRidePanelRef.current,{
+        transform:'translateY(0)'
+      })
+    }else{
+      gsap.to(confirmRidePanelRef.current,{
+        transform:'translateY(100%)'
+      })
+    }
+   
+  },[confirmRidePanel])
+
+  useGSAP(function(){
+
+    if(vehicleFound){
+      gsap.to(vehicleFoundRef.current,{
+        transform:'translateY(0)'
+      })
+    }else{
+      gsap.to(vehicleFoundRef.current,{
+        transform:'translateY(100%)'
+      })
+    }
+   
+  },[vehicleFound])
+
+
 
   return (
     <div className='h-screen relative overflow-hidden' >
@@ -88,36 +126,14 @@ const Home = () => {
       </div>
       {/* car */}
       <div ref={vehiclePanelRef} className='w-full fixed z-10 bottom-0 bg-white px-3 py-6 translate-y-full '>
-         <div className='mb-2  w-full border-2 border-black rounded-xl flex items-center justify-evenly'>
-         <img className='h-14 'src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_538,w_956/v1688398971/assets/29/fbb8b0-75b1-4e2a-8533-3a364e7042fa/original/UberSelect-White.png" alt="" />
-          <div className=' w-1/2'>
-            <h4 className='font-bold text-m'>UberGo <span><i className="ri-user-3-line"></i> 4 </span></h4>
-            <h5 className='font-bold text-m'>2 mins away</h5>
-            <p className='font-medium text-gray-600 text-xs' >Affordable Comapct Rides</p>
-          </div>
-          <h2 className='text-2xl font-bold'>$22.4</h2>
-         </div>
-        {/* bike */}
-         <div className='mb-2 w-full border-2 border-black rounded-xl flex items-center justify-evenly'>
-         <img className='h-14 'src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_956,h_537/v1571927853/assets/39/c1c2c7-61eb-4432-9bac-728b974207e7/original/cityscoot-icon-mobile.png" alt="" />
-          <div className=' w-1/2'>
-            <h4 className='font-bold text-m'>MotorCycle <span><i className="ri-user-3-line"></i> 1</span></h4>
-            <h5 className='font-bold text-m'>2 mins away</h5>
-            <p className='font-medium text-gray-600 text-xs' >Affordable Comapct Rides</p>
-          </div>
-          <h2 className='text-2xl font-bold'>$233.4</h2>
-         </div>
-          {/* auto */}
-         <div className='mb-2 w-full border-2 border-black rounded-xl flex items-center justify-evenly'>
-         <img className='h-14 'src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1648431773/assets/1d/db8c56-0204-4ce4-81ce-56a11a07fe98/original/Uber_Auto_558x372_pixels_Desktop.png" alt="" />
-          <div className=' w-1/2'>
-            <h4 className='font-bold text-m'>AutoRickshaw<span><i className="ri-user-3-line"></i> 3 </span></h4>
-            <h5 className='font-bold text-m'>2 mins away</h5>
-            <p className='font-medium text-gray-600 text-xs' >Affordable Comapct Rides</p>
-          </div>
-          <h2 className='text-2xl font-bold'>$2.4</h2>
-         </div>
-         
+         <VehiclePanel setVehiclePanelOpen={setVehiclePanelOpen} setConfirmRidePanel={setConfirmRidePanel}/>
+      </div>
+      <div ref={confirmRidePanelRef} className='w-full fixed z-10 bottom-0 bg-white px-3 py-6 translate-y-full '>
+         <ConfirmRide setConfirmRidePanel={setConfirmRidePanel} setvehicleFound={setvehicleFound} />
+      </div>
+
+      <div ref={vehicleFoundRef} className='w-full fixed z-10 bottom-0 bg-white px-3 py-6 translate-y-full '>
+         <LookingForDriver vehicleFound/>
       </div>
     </div>
   )
