@@ -1,13 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const WaitingForDriver = (props) => {
+const Riding = () => {
   return (
-    <div>
-      <h5 className='p-1 text-center w-[93%] absolute top-0' onClick={() => {
-        props.waitingForDriver(false)
-      }}><i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i></h5>
+    <div className='h-screen w-screen '>
 
-      <div className='flex items-center justify-between'>
+    <Link to='/home'className='fixed  h-10 w-10 right-2 top-2 bg-white flex items-center justify-center rounded-full'>
+        <i className=" text-lg font-medium ri-home-4-fill"></i>
+    </Link>
+
+
+
+    <div className='h-1/2'>
+        <img className='h-full w-full object-cover' src="https://cdn.theatlantic.com/thumbor/BlEOtTo9L9mjMLuyCcjG3xYr4qE=/0x48:1231x740/960x540/media/img/mt/2017/04/IMG_7105/original.png" alt="Cityscape" />
+    </div> 
+    <div className='h-1/2  p-4'>
+    <div className='flex items-center justify-between'>
         <img className='h-12' src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg" alt="" />
         <div className='text-right'>
           <h2 className='text-lg font-medium capitalize'>Rider NAme</h2>
@@ -26,13 +34,7 @@ const WaitingForDriver = (props) => {
               <p className='text-sm -mt-1 text-gray-600'>rc 42</p>
             </div>
           </div>
-          <div className='flex items-center gap-5 p-3 border-b-2'>
-            <i className="text-lg ri-map-pin-2-fill"></i>
-            <div>
-              <h3 className='text-lg font-medium'>562/11-A</h3>
-              <p className='text-sm -mt-1 text-gray-600'>samanpura</p>
-            </div>
-          </div>
+         
           <div className='flex items-center gap-5 p-3'>
             <i className="ri-currency-line"></i>
             <div>
@@ -42,8 +44,10 @@ const WaitingForDriver = (props) => {
           </div>
         </div>
       </div>
+      <button className='w-full mt-5 bg-green-600 text-white font-semibold p-2 rounded-lg'>MAKE A PAYMENT</button>
+    </div>
     </div>
   )
 }
 
-export default WaitingForDriver
+export default Riding
